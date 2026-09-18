@@ -1,0 +1,33 @@
+# Project Blueprint & Assistant Instructions
+BLUEPRINT.md
+.github/
+
+# Environment Variables & Secrets (Keep .env.example tracked)
+.env
+.env.local
+.env.*.local
+server/.env
+server/.env.local
+!server/.env.example
+
+# Dependencies
+node_modules/
+client/node_modules/
+server/node_modules/
+
+# Production / Build Outputs
+dist/
+client/dist/
+build/
+client/build/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS & Editor Artifacts
+.DS_Store
+Thumbs.db
+.vscode/*
+!.vscode/settings.json
