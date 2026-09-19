@@ -1,0 +1,1 @@
+// FilterTray component stub

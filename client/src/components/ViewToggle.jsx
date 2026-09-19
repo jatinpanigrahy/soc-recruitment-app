@@ -1,0 +1,1 @@
+// ViewToggle component stub
