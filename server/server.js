@@ -39,6 +39,16 @@ app.get("/api/health", (req, res) => {
 const start = async () => {
   try {
     await connectDB();
+
+    // Auto-seed initial societies if database is fresh/empty
+    const Society = require("./models/Society");
+    const count = await Society.countDocuments();
+    if (count === 0) {
+      const { sampleSocieties } = require("./seed");
+      await Society.insertMany(sampleSocieties);
+      console.log("[Database] Fresh database detected: auto-seeded 6 sample societies.");
+    }
+
     app.listen(PORT, () => {
       console.log(`Server listening on port ${PORT}`);
     });

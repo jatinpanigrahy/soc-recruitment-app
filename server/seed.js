@@ -21,7 +21,7 @@ const sampleSocieties = [
     tagline: "Empowering student developers through open technology, workshops, and hackathons",
     description:
       "Google Developer Groups on Campus is a student-led developer community. We organize tech workshops, internal hackathons, study jams, and open-source contribution drives spanning Web, Mobile, Cloud, and Machine Learning.",
-    logoUrl: "https://images.unsplash.com/photo-1531482615713-2afd69097998",
+    logoUrl: "https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=200&q=80",
     deadline: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000), // 7 days from now
     openRoles: [
       {
@@ -62,7 +62,7 @@ const sampleSocieties = [
     tagline: "High-quality, affordable consulting services to non-profits and social enterprises",
     description:
       "180 Degrees Consulting is the world's largest student consultancy for social impact organizations. Student consultants work on real client engagements, conducting market research, competitor benchmarking, and strategic problem-solving for partner non-profits.",
-    logoUrl: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40",
+    logoUrl: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=200&q=80",
     deadline: new Date(Date.now() + 9 * 24 * 60 * 60 * 1000), // 9 days from now
     openRoles: [
       {
@@ -98,7 +98,7 @@ const sampleSocieties = [
     tagline: "A community of student leaders committed to using entrepreneurship to improve lives",
     description:
       "Enactus operates self-sustaining social enterprises to address civic, economic, and environmental issues. Fresh recruits collaborate closely with seniors on grassroots initiatives, product development, and beneficiary training programs.",
-    logoUrl: "https://images.unsplash.com/photo-1559027615-cd4628902d4a",
+    logoUrl: "https://images.unsplash.com/photo-1559027615-cd4628902d4a?auto=format&fit=crop&w=200&q=80",
     deadline: new Date(Date.now() + 6 * 24 * 60 * 60 * 1000), // 6 days from now
     openRoles: [
       {
@@ -134,7 +134,7 @@ const sampleSocieties = [
     tagline: "The premier collegiate urban and western choreography collective",
     description:
       "Mirage Dance Crew is our college's competitive western and street dance society. We train rigorously in urban choreography, hip-hop foundations, and contemporary storytelling, competing across major inter-college university festivals.",
-    logoUrl: "https://images.unsplash.com/photo-1547153760-18fc86324498",
+    logoUrl: "https://images.unsplash.com/photo-1547153760-18fc86324498?auto=format&fit=crop&w=200&q=80",
     deadline: new Date(Date.now() + 4 * 24 * 60 * 60 * 1000), // 4 days from now
     openRoles: [
       {
@@ -170,7 +170,7 @@ const sampleSocieties = [
     tagline: "Creating harmonies, live acoustic sets, and original collegiate music",
     description:
       "Crescendo is the official university music society. We bring together vocalists, instrumentalists, and sound enthusiasts for acoustic campus jams, battle-of-the-bands tournaments, and collaborative studio recordings.",
-    logoUrl: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4",
+    logoUrl: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=200&q=80",
     deadline: new Date(Date.now() + 5 * 24 * 60 * 60 * 1000), // 5 days from now
     openRoles: [
       {
@@ -206,7 +206,7 @@ const sampleSocieties = [
     tagline: "Engineering autonomous Mars rovers, custom flight controllers, and intelligent robotic systems",
     description:
       "ARES Robotics is our university rover research team. We design, build, and program terrestrial rovers for university rover challenges, integrating custom robotic arms, life-detection scientific modules, and autonomous LiDAR navigation.",
-    logoUrl: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e",
+    logoUrl: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=200&q=80",
     deadline: new Date(Date.now() + 8 * 24 * 60 * 60 * 1000), // 8 days from now
     openRoles: [
       {
@@ -260,5 +260,9 @@ const seedData = async () => {
   }
 };
 
-// Execute seeder
-seedData();
+// Execute seeder if invoked directly via CLI
+if (require.main === module) {
+  seedData();
+}
+
+module.exports = { sampleSocieties, seedData };
