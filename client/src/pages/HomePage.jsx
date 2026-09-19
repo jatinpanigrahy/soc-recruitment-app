@@ -20,29 +20,43 @@ export default function HomePage() {
   const [societies, setSocieties] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
+  const [debouncedSearch, setDebouncedSearch] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
 
-  // Fetch societies whenever category filter or search input changes
+  // Debounce search input by 250ms to prevent typing lag and network flooding
   useEffect(() => {
+    const timer = setTimeout(() => {
+      setDebouncedSearch(searchQuery.trim());
+    }, 250);
+    return () => clearTimeout(timer);
+  }, [searchQuery]);
+
+  // Fetch societies whenever category filter or debounced search changes
+  useEffect(() => {
+    let isMounted = true;
     const fetchSocieties = async () => {
-      setLoading(true);
       try {
         const res = await api.get("/societies", {
           params: {
             category: selectedCategory !== "All" ? selectedCategory : undefined,
-            search: searchQuery.trim() || undefined,
+            search: debouncedSearch || undefined,
           },
         });
-        setSocieties(res.data.data || []);
+        if (isMounted) {
+          setSocieties(res.data.data || []);
+        }
       } catch (err) {
         console.error("Error fetching societies:", err);
       } finally {
-        setLoading(false);
+        if (isMounted) setLoading(false);
       }
     };
 
     fetchSocieties();
-  }, [selectedCategory, searchQuery]);
+    return () => {
+      isMounted = false;
+    };
+  }, [selectedCategory, debouncedSearch]);
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
@@ -77,7 +91,7 @@ export default function HomePage() {
             <button
               key={cat}
               onClick={() => setSelectedCategory(cat)}
-              className={`px-4 py-2 rounded-xl text-sm font-semibold transition-all ${
+              className={`px-4 py-2 rounded-xl text-sm font-semibold transition-all cursor-pointer ${
                 selectedCategory === cat
                   ? "bg-emerald-600 text-white shadow-md shadow-emerald-500/20"
                   : "bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-700"

@@ -6,7 +6,7 @@ import SocietyDetailPage from './pages/SocietyDetailPage';
 function App() {
   return (
     <Router>
-      <div className="min-h-screen bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 transition-colors duration-200">
+      <div className="min-h-screen bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100">
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/societies/:id" element={<SocietyDetailPage />} />

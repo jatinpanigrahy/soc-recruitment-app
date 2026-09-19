@@ -20,7 +20,7 @@ function SocietyCard({ society }) {
   const isExpired = daysRemaining <= 0;
 
   return (
-    <div className="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between p-6">
+    <div className="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md transition-shadow duration-150 flex flex-col justify-between p-6">
       {/* Header metadata: Category badge & deadline status */}
       <div className="flex items-center justify-between mb-4">
         <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 dark:bg-emerald-950/50 dark:text-emerald-400">
@@ -37,7 +37,9 @@ function SocietyCard({ society }) {
         <img
           src={society.logoUrl}
           alt={society.name}
-          className="w-14 h-14 rounded-xl object-cover"
+          loading="lazy"
+          decoding="async"
+          className="w-14 h-14 rounded-xl object-cover flex-shrink-0"
         />
         <div>
           <h3 className="font-bold text-slate-900 dark:text-white text-lg">
@@ -58,7 +60,7 @@ function SocietyCard({ society }) {
 
         <Link
           to={`/societies/${society._id}`}
-          className="inline-flex items-center gap-1 text-sm font-semibold text-emerald-600 dark:text-emerald-400 hover:text-emerald-700"
+          className="inline-flex items-center gap-1 text-sm font-semibold text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 cursor-pointer"
         >
           View & Apply <ArrowRight className="w-4 h-4" />
         </Link>

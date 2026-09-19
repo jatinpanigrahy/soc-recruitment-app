@@ -90,7 +90,9 @@ export default function SocietyDetailPage() {
           <img
             src={society.logoUrl}
             alt={society.name}
-            className="w-20 h-20 rounded-2xl object-cover"
+            loading="lazy"
+            decoding="async"
+            className="w-20 h-20 rounded-2xl object-cover flex-shrink-0"
           />
           <div>
             <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 dark:bg-emerald-950/50 dark:text-emerald-400">
@@ -178,7 +180,7 @@ export default function SocietyDetailPage() {
         ) : (
           <Link
             to={`/apply/${society._id}`}
-            className="px-8 py-3.5 rounded-xl font-semibold bg-emerald-600 hover:bg-emerald-700 text-white shadow-lg shadow-emerald-600/25 transition-all hover:scale-[1.02]"
+            className="px-8 py-3.5 rounded-xl font-semibold bg-emerald-600 hover:bg-emerald-700 active:scale-95 text-white shadow-lg shadow-emerald-600/25 transition-transform duration-100 cursor-pointer"
           >
             Apply for a Position →
           </Link>
