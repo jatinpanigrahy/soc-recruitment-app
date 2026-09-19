@@ -1,5 +1,6 @@
-# Project Blueprint & Assistant Instructions
+# Project Blueprint
 BLUEPRINT.md
+ROADMAP.md
 .github/
 
 # Environment Variables & Secrets (Keep .env.example tracked)
