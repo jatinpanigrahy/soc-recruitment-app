@@ -20,6 +20,7 @@ import ResetPasswordPage from './pages/ResetPasswordPage';
 import ProfilePage from './pages/ProfilePage';
 import ApplyPage from './pages/ApplyPage';
 import StudentDashboardPage from './pages/StudentDashboardPage';
+import AdminDashboardPage from './pages/AdminDashboardPage';
 
 function App() {
   return (
@@ -64,6 +65,16 @@ function App() {
                 element={
                   <ProtectedRoute>
                     <StudentDashboardPage />
+                  </ProtectedRoute>
+                }
+              />
+
+              {/* Protected Admin Command Center Route */}
+              <Route
+                path="/dashboard/admin"
+                element={
+                  <ProtectedRoute allowedRoles={['society_admin', 'super_admin']}>
+                    <AdminDashboardPage />
                   </ProtectedRoute>
                 }
               />

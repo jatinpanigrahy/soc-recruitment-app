@@ -118,7 +118,9 @@ const login = async (req, res) => {
  */
 const getMe = async (req, res) => {
   try {
-    const user = await User.findById(req.user.id).select("-password");
+    const user = await User.findById(req.user.id)
+      .select("-password")
+      .populate("managedSocieties", "name logoUrl category deadline recruitmentOpenedAt openRoles generalQuestions");
     if (!user) {
       return res
         .status(404)

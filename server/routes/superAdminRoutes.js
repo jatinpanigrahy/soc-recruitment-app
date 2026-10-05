@@ -77,6 +77,13 @@ router.patch("/societies/:id/archive", archiveSociety);
 router.patch("/users/:id/promote", promoteUser);
 
 /**
+ * @route   PATCH /api/super-admin/promote-user
+ * @desc    Alias to promote user to society_admin and assign managed societies
+ * @access  Private (Super Admin)
+ */
+router.patch("/promote-user", promoteUser);
+
+/**
  * @route   GET /api/super-admin/users
  * @desc    List all platform users with optional role and search filters
  * @access  Private (Super Admin)

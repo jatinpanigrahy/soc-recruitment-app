@@ -190,7 +190,7 @@ const archiveSociety = async (req, res) => {
  */
 const promoteUser = async (req, res) => {
   try {
-    const { id } = req.params;
+    const id = req.params.id || req.body.userId || req.body.id;
     const { role = "society_admin", managedSocieties } = req.body;
 
     const user = await User.findById(id);

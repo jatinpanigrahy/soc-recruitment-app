@@ -105,7 +105,7 @@ const getApplicants = async (req, res) => {
  */
 const updateStatus = async (req, res) => {
   try {
-    const { id } = req.params;
+    const id = req.params.id || req.params.applicationId;
     const { status, feedbackNote } = req.body;
 
     const validStatuses = ["Pending", "Shortlisted", "Accepted", "Rejected"];

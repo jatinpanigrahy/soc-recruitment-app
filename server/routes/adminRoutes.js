@@ -41,6 +41,13 @@ router.get("/societies/:societyId/applications", getApplicants);
 router.get("/societies/:societyId/applicants", getApplicants);
 
 /**
+ * @route   GET /api/admin/applicants/:societyId
+ * @desc    Alias to get all applicants for a specific society
+ * @access  Private (Society Admin / Super Admin)
+ */
+router.get("/applicants/:societyId", getApplicants);
+
+/**
  * @route   GET /api/admin/applications
  * @desc    Get applicants for all managed societies or filtered by ?societyId=
  * @access  Private (Society Admin / Super Admin)
@@ -53,6 +60,14 @@ router.get("/applications", getApplicants);
  * @access  Private (Society Admin / Super Admin)
  */
 router.patch("/applications/:id/status", updateStatus);
+
+/**
+ * @route   PATCH /api/admin/applicants/:societyId/:id/status
+ * @desc    Alias to update candidate application status and feedback note
+ * @access  Private (Society Admin / Super Admin)
+ */
+router.patch("/applicants/:societyId/:id/status", updateStatus);
+router.patch("/applicants/:id/status", updateStatus);
 
 /**
  * @route   PATCH /api/admin/societies/:societyId/questions
