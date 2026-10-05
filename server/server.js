@@ -14,6 +14,7 @@ const mongoSanitize = require("express-mongo-sanitize");
 const connectDB = require("./config/db");
 const authRoutes = require("./routes/authRoutes");
 const societyRoutes = require("./routes/societyRoutes");
+const applicationRoutes = require("./routes/applicationRoutes");
 const errorHandler = require("./middleware/errorMiddleware");
 const User = require("./models/User");
 const Society = require("./models/Society");
@@ -42,6 +43,8 @@ app.use(mongoSanitize());
 // Mount core API route handlers
 app.use("/api/auth", authRoutes);
 app.use("/api/societies", societyRoutes);
+app.use("/api/applications", applicationRoutes);
+
 
 // Health check endpoint for uptime and deployment monitoring
 app.get("/api/health", (req, res) => {
@@ -96,6 +99,9 @@ const start = async () => {
   }
 };
 
-start();
+if (process.env.NODE_ENV !== "test") {
+  start();
+}
 
 module.exports = app;
+

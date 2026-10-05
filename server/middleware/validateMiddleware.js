@@ -80,6 +80,40 @@ const resetPasswordSchema = joi.object({
   password: joi.string().min(6).required(),
 });
 
+/**
+ * Application Submission Validation Schema
+ * Validates society reference, desired role, and applicant question responses.
+ */
+const submitApplicationSchema = joi.object({
+  societyId: joi.string().trim().required(),
+  roleAppliedFor: joi.string().trim().required(),
+  answers: joi
+    .array()
+    .items(
+      joi.object({
+        question: joi.string().trim().required(),
+        answer: joi.string().allow("").trim().required(),
+      })
+    )
+    .required(),
+});
+
+/**
+ * Application Edit Validation Schema
+ * Allows updating answers on pending applications before recruitment deadline.
+ */
+const editApplicationSchema = joi.object({
+  answers: joi
+    .array()
+    .items(
+      joi.object({
+        question: joi.string().trim().required(),
+        answer: joi.string().allow("").trim().required(),
+      })
+    )
+    .required(),
+});
+
 module.exports = {
   validate,
   registerSchema,
@@ -87,4 +121,7 @@ module.exports = {
   updateProfileSchema,
   forgotPasswordSchema,
   resetPasswordSchema,
+  submitApplicationSchema,
+  editApplicationSchema,
 };
+

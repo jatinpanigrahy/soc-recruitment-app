@@ -12,7 +12,7 @@ const rateLimit = require('express-rate-limit');
  */
 const authLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
-  limit: 20, // Limit each IP to 20 requests per window
+  limit: process.env.NODE_ENV === 'test' ? 1000 : 20, // Limit each IP to 20 requests per window
   message: {
     success: false,
     message: 'Too many requests from this IP, please try again after 15 minutes'
@@ -24,11 +24,11 @@ const authLimiter = rateLimit({
 /**
  * Application Limiter
  * Limits application submissions to prevent spam.
- * Allows 10 requests per 15 minutes per IP.
+ * Allows 10 requests per 15 minutes per IP (1000 in test environment).
  */
 const applicationLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
-  limit: 10, // Limit each IP to 10 requests per window
+  limit: process.env.NODE_ENV === 'test' ? 1000 : 10, // Limit each IP to 10 requests per window
   message: {
     success: false,
     message: 'Too many application submissions from this IP, please try again later'
