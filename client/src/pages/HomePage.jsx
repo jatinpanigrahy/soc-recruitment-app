@@ -9,6 +9,7 @@
  * - Frosted glass FilterTray with real-time search, category filtering, and sorting.
  * - iOS-style segmented ViewToggle supporting Grid and Feed displays.
  * - Responsive SocietyCard catalog with smooth animations and empty state handling.
+ * - Server-side pagination with "Load More" action and page-reset on filter/search/sort change.
  */
 
 import React, { useState, useEffect, useMemo } from "react";
@@ -19,7 +20,7 @@ import GradientBackground from "../components/GradientBackground";
 import FilterTray from "../components/FilterTray";
 import ViewToggle from "../components/ViewToggle";
 import SocietyCard from "../components/SocietyCard";
-import { Sparkles, Layers, Compass } from "lucide-react";
+import { Sparkles, Layers, Compass, Loader2 } from "lucide-react";
 
 const CATEGORIES = [
   "All",
@@ -34,39 +35,92 @@ const CATEGORIES = [
 export default function HomePage() {
   const [societies, setSocieties] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [loadingMore, setLoadingMore] = useState(false);
+  const [page, setPage] = useState(1);
+  const [hasMore, setHasMore] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [debouncedSearch, setDebouncedSearch] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [sortBy, setSortBy] = useState("deadline");
   const [viewMode, setViewMode] = useState("grid");
 
-  // Debounce search input by 250ms
+  // Debounce search input by 250ms and reset page to 1
   useEffect(() => {
     const timer = setTimeout(() => {
       setDebouncedSearch(searchQuery.trim());
+      setPage(1);
     }, 250);
     return () => clearTimeout(timer);
   }, [searchQuery]);
 
-  // Fetch societies from backend when category or search changes
+  // Reset to page 1 on category change
+  const handleCategoryChange = (cat) => {
+    setSelectedCategory(cat);
+    setPage(1);
+  };
+
+  // Reset to page 1 on sort change
+  const handleSortChange = (sort) => {
+    setSortBy(sort);
+    setPage(1);
+  };
+
+  // Load next page of societies
+  const handleLoadMore = () => {
+    if (!loadingMore && hasMore) {
+      setPage((prev) => prev + 1);
+    }
+  };
+
+  // Fetch societies from backend when category, search, sort, or page changes
   useEffect(() => {
     let isMounted = true;
     const fetchSocieties = async () => {
-      setLoading(true);
+      if (page === 1) {
+        setLoading(true);
+      } else {
+        setLoadingMore(true);
+      }
+
       try {
         const res = await api.get("/societies", {
           params: {
+            page,
+            limit: 12,
             category: selectedCategory !== "All" ? selectedCategory : undefined,
             search: debouncedSearch || undefined,
+            sort: sortBy,
           },
         });
+
         if (isMounted) {
-          setSocieties(res.data?.data || []);
+          const fetchedList = res.data?.data || [];
+          const pagination = res.data?.pagination;
+
+          if (page === 1) {
+            setSocieties(fetchedList);
+          } else {
+            // Append fetched societies when paginating, deduplicating by _id
+            setSocieties((prev) => {
+              const existingIds = new Set(prev.map((s) => s._id));
+              const uniqueNew = fetchedList.filter((s) => !existingIds.has(s._id));
+              return [...prev, ...uniqueNew];
+            });
+          }
+
+          if (pagination && typeof pagination.hasMore === "boolean") {
+            setHasMore(pagination.hasMore);
+          } else {
+            setHasMore(fetchedList.length === 12);
+          }
         }
       } catch (err) {
         console.error("Error fetching societies:", err);
       } finally {
-        if (isMounted) setLoading(false);
+        if (isMounted) {
+          setLoading(false);
+          setLoadingMore(false);
+        }
       }
     };
 
@@ -74,7 +128,7 @@ export default function HomePage() {
     return () => {
       isMounted = false;
     };
-  }, [selectedCategory, debouncedSearch]);
+  }, [selectedCategory, debouncedSearch, sortBy, page]);
 
   // Sort societies based on active sort selector
   const sortedSocieties = useMemo(() => {
@@ -142,9 +196,9 @@ export default function HomePage() {
             searchQuery={searchQuery}
             onSearchChange={setSearchQuery}
             selectedCategory={selectedCategory}
-            onCategoryChange={setSelectedCategory}
+            onCategoryChange={handleCategoryChange}
             sortBy={sortBy}
-            onSortChange={setSortBy}
+            onSortChange={handleSortChange}
             categories={CATEGORIES}
           />
         </section>
@@ -206,32 +260,59 @@ export default function HomePage() {
                 onClick={() => {
                   setSearchQuery("");
                   setSelectedCategory("All");
+                  setSortBy("deadline");
+                  setPage(1);
                 }}
                 className="mt-2 inline-flex items-center px-4 py-2 rounded-xl text-xs font-semibold bg-violet-600 hover:bg-violet-700 text-white shadow-sm transition-all cursor-pointer"
               >
                 Clear all filters
               </button>
             </div>
-          ) : viewMode === "feed" ? (
-            <div className="space-y-4">
-              {sortedSocieties.map((society) => (
-                <SocietyCard
-                  key={society._id}
-                  society={society}
-                  viewMode="feed"
-                />
-              ))}
-            </div>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {sortedSocieties.map((society) => (
-                <SocietyCard
-                  key={society._id}
-                  society={society}
-                  viewMode="grid"
-                />
-              ))}
-            </div>
+            <>
+              {viewMode === "feed" ? (
+                <div className="space-y-4">
+                  {sortedSocieties.map((society) => (
+                    <SocietyCard
+                      key={society._id}
+                      society={society}
+                      viewMode="feed"
+                    />
+                  ))}
+                </div>
+              ) : (
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {sortedSocieties.map((society) => (
+                    <SocietyCard
+                      key={society._id}
+                      society={society}
+                      viewMode="grid"
+                    />
+                  ))}
+                </div>
+              )}
+
+              {/* Load More Button */}
+              {hasMore && (
+                <div className="flex justify-center pt-8 pb-4">
+                  <button
+                    type="button"
+                    onClick={handleLoadMore}
+                    disabled={loadingMore}
+                    className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-violet-600 hover:bg-violet-700 active:scale-95 text-white text-sm font-semibold shadow-md shadow-violet-600/20 disabled:opacity-60 disabled:cursor-not-allowed disabled:active:scale-100 transition-all cursor-pointer"
+                  >
+                    {loadingMore ? (
+                      <>
+                        <Loader2 className="w-4 h-4 animate-spin" />
+                        <span>Loading more societies...</span>
+                      </>
+                    ) : (
+                      <span>Load More</span>
+                    )}
+                  </button>
+                </div>
+              )}
+            </>
           )}
         </section>
       </main>

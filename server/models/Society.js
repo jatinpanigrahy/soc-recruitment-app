@@ -43,7 +43,6 @@ const societySchema = new mongoose.Schema(
     name: {
       type: String,
       required: true,
-      unique: true,
       trim: true,
     },
     // Flexible category string without hardcoded enums (e.g. Technical, Cultural, Literary, Sports)
@@ -109,6 +108,10 @@ const societySchema = new mongoose.Schema(
     timestamps: true,
   },
 );
+
+// Explicit MongoDB indexes on category and name fields to optimize search queries
+societySchema.index({ category: 1 });
+societySchema.index({ name: 1 });
 
 // Compile and export Society model
 const Society = mongoose.model("Society", societySchema);
