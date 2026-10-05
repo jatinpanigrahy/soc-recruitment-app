@@ -21,6 +21,7 @@ import {
   Menu,
   X,
   ShieldCheck,
+  Sparkles,
 } from "lucide-react";
 import NotificationDropdown from "./NotificationDropdown";
 
@@ -47,17 +48,30 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Brand Logo & Title */}
-          <Link
-            to="/"
-            className="flex items-center gap-2.5 group transition-transform active:scale-95"
-          >
-            <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-violet-600 to-indigo-500 flex items-center justify-center text-white shadow-md shadow-violet-500/30 group-hover:shadow-violet-500/50 transition-all">
-              <Activity className="w-5 h-5 animate-pulse" />
+          <div className="flex items-center gap-8">
+            <Link
+              to="/"
+              className="flex items-center gap-2.5 group transition-transform active:scale-95"
+            >
+              <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-violet-600 to-indigo-500 flex items-center justify-center text-white shadow-md shadow-violet-500/30 group-hover:shadow-violet-500/50 transition-all">
+                <Activity className="w-5 h-5 animate-pulse" />
+              </div>
+              <span className="font-display font-extrabold text-xl tracking-tight bg-gradient-to-r from-violet-600 to-indigo-500 bg-clip-text text-transparent">
+                Pulse
+              </span>
+            </Link>
+
+            {/* Desktop Navigation Links */}
+            <div className="hidden md:flex items-center gap-2">
+              <Link
+                to="/quiz"
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs sm:text-sm font-semibold text-slate-700 dark:text-slate-300 hover:text-violet-600 dark:hover:text-violet-400 hover:bg-slate-100 dark:hover:bg-white/10 transition-all"
+              >
+                <Sparkles className="w-4 h-4 text-violet-500" />
+                <span>Find Your Fit</span>
+              </Link>
             </div>
-            <span className="font-display font-extrabold text-xl tracking-tight bg-gradient-to-r from-violet-600 to-indigo-500 bg-clip-text text-transparent">
-              Pulse
-            </span>
-          </Link>
+          </div>
 
           {/* Desktop Right Controls */}
           <div className="hidden md:flex items-center gap-4">
@@ -174,6 +188,14 @@ export default function Navbar() {
       {/* Mobile Drawer Dropdown */}
       {mobileMenuOpen && (
         <div className="md:hidden border-t border-slate-200/60 dark:border-white/10 bg-white/95 dark:bg-slate-950/95 backdrop-blur-xl px-4 py-4 space-y-3">
+          <Link
+            to="/quiz"
+            onClick={() => setMobileMenuOpen(false)}
+            className="flex items-center gap-2 px-3 py-2.5 rounded-xl text-sm font-semibold text-violet-700 dark:text-violet-300 bg-violet-50 dark:bg-violet-950/40 hover:bg-violet-100 dark:hover:bg-violet-900/40 border border-violet-200 dark:border-violet-800/40 transition-all"
+          >
+            <Sparkles className="w-4 h-4 text-violet-500" />
+            Find Your Fit (Quiz)
+          </Link>
           {isAuthenticated ? (
             <>
               <div className="flex items-center gap-3 p-2 rounded-xl bg-slate-100/70 dark:bg-white/5">

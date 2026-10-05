@@ -12,13 +12,14 @@
  */
 
 import React, { useState, useEffect, useMemo } from "react";
+import { Link } from "react-router-dom";
 import api from "../api/axiosInstance";
 import Navbar from "../components/Navbar";
 import GradientBackground from "../components/GradientBackground";
 import FilterTray from "../components/FilterTray";
 import ViewToggle from "../components/ViewToggle";
 import SocietyCard from "../components/SocietyCard";
-import { Sparkles, Layers } from "lucide-react";
+import { Sparkles, Layers, Compass } from "lucide-react";
 
 const CATEGORIES = [
   "All",
@@ -123,6 +124,16 @@ export default function HomePage() {
             Explore university clubs, explore open departmental positions, and
             submit your recruitment applications effortlessly.
           </p>
+
+          <div className="pt-2">
+            <Link
+              to="/quiz"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-violet-600 hover:bg-violet-700 active:scale-95 text-white text-xs sm:text-sm font-semibold shadow-md shadow-violet-600/25 transition-all"
+            >
+              <Compass className="w-4 h-4" />
+              <span>Take the "Find Your Fit" Quiz</span>
+            </Link>
+          </div>
         </section>
 
         {/* Filter Tray Controls */}

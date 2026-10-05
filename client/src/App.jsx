@@ -13,6 +13,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 
 import HomePage from './pages/HomePage';
 import SocietyDetailPage from './pages/SocietyDetailPage';
+import QuizPage from './pages/QuizPage';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import ForgotPasswordPage from './pages/ForgotPasswordPage';
@@ -32,6 +33,7 @@ function App() {
               {/* Public & Discovery Routes */}
               <Route path="/" element={<HomePage />} />
               <Route path="/societies/:id" element={<SocietyDetailPage />} />
+              <Route path="/quiz" element={<QuizPage />} />
 
               {/* Authentication Routes */}
               <Route path="/login" element={<LoginPage />} />

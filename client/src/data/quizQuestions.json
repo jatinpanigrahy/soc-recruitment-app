@@ -1,1 +1,261 @@
-[]
+[
+  {
+    "id": 1,
+    "question": "How do you prefer spending your ideal Friday evening after classes?",
+    "subtitle": "Think about where your energy naturally flows when you're off the clock.",
+    "options": [
+      {
+        "id": "q1_tech",
+        "text": "Building a side project, tinkering with code, or exploring new AI tools.",
+        "weights": { "Technical": 3 }
+      },
+      {
+        "id": "q1_music",
+        "text": "Jamming with friends, producing beats, or discovering underground artists.",
+        "weights": { "Music": 3, "Cultural": 1 }
+      },
+      {
+        "id": "q1_sports",
+        "text": "Playing football, shooting hoops on the court, or hitting the gym.",
+        "weights": { "Sports": 3 }
+      },
+      {
+        "id": "q1_lit",
+        "text": "Reading thought-provoking books, journaling, or debating current affairs.",
+        "weights": { "Literary": 3 }
+      },
+      {
+        "id": "q1_dance",
+        "text": "Practicing choreography, rehearsing routines, or dancing in the studio.",
+        "weights": { "Dance": 3 }
+      },
+      {
+        "id": "q1_cult",
+        "text": "Staging theatrical skits, sketching art, or organizing vibrant celebrations.",
+        "weights": { "Cultural": 3 }
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "question": "What kind of challenge makes you lose track of time?",
+    "subtitle": "Pick the problem that excites your mind the most.",
+    "options": [
+      {
+        "id": "q2_tech",
+        "text": "Hunting down tricky software bugs or designing system architectures.",
+        "weights": { "Technical": 3 }
+      },
+      {
+        "id": "q2_lit",
+        "text": "Writing an essay with razor-sharp prose or presenting a winning debate argument.",
+        "weights": { "Literary": 3 }
+      },
+      {
+        "id": "q2_dance",
+        "text": "Perfecting complex syncopated footwork and synchronizing with a crew.",
+        "weights": { "Dance": 3, "Sports": 1 }
+      },
+      {
+        "id": "q2_sports",
+        "text": "Pushing physical limits during high-stakes matches or intense drills.",
+        "weights": { "Sports": 3 }
+      },
+      {
+        "id": "q2_music",
+        "text": "Arranging multi-part vocal harmonies or dialing in audio acoustics.",
+        "weights": { "Music": 3 }
+      },
+      {
+        "id": "q2_cult",
+        "text": "Designing expressive stage backdrops, storytelling sets, and heritage showcases.",
+        "weights": { "Cultural": 3 }
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "question": "Which campus event would you be first in line to attend?",
+    "subtitle": "Select the atmosphere where you feel completely at home.",
+    "options": [
+      {
+        "id": "q3_tech",
+        "text": "An overnight 36-hour hackathon or developer demo day.",
+        "weights": { "Technical": 3 }
+      },
+      {
+        "id": "q3_sports",
+        "text": "An electric inter-college championship match under stadium floodlights.",
+        "weights": { "Sports": 3 }
+      },
+      {
+        "id": "q3_music",
+        "text": "An energetic live battle-of-the-bands gig on the campus lawn.",
+        "weights": { "Music": 3, "Cultural": 1 }
+      },
+      {
+        "id": "q3_dance",
+        "text": "A pulse-pounding street dance battle or hip-hop showcase.",
+        "weights": { "Dance": 3 }
+      },
+      {
+        "id": "q3_lit",
+        "text": "A fiery parliamentary debate tournament or spoken-word poetry open mic.",
+        "weights": { "Literary": 3 }
+      },
+      {
+        "id": "q3_cult",
+        "text": "An annual cultural gala with theatrical drama, folk exhibitions, and design.",
+        "weights": { "Cultural": 3 }
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "question": "In a club project, where do your talents shine brightest?",
+    "subtitle": "Your natural role within a collaborative group.",
+    "options": [
+      {
+        "id": "q4_tech",
+        "text": "The Engineer: Solving logic puzzles, writing clean APIs, and automation.",
+        "weights": { "Technical": 3 }
+      },
+      {
+        "id": "q4_lit",
+        "text": "The Wordsmith: Editorial direction, speechwriting, and persuasive communication.",
+        "weights": { "Literary": 3 }
+      },
+      {
+        "id": "q4_sports",
+        "text": "The Strategist & Athlete: Tactical plays, conditioning, and team grit.",
+        "weights": { "Sports": 3 }
+      },
+      {
+        "id": "q4_music",
+        "text": "The Soundcrafter: Composing melodies, orchestrating sound, and rhythm.",
+        "weights": { "Music": 3 }
+      },
+      {
+        "id": "q4_dance",
+        "text": "The Choreographer: Creating visual movement, body dynamics, and stage sync.",
+        "weights": { "Dance": 3 }
+      },
+      {
+        "id": "q4_cult",
+        "text": "The Creative Producer: Curating aesthetics, drama direction, and festival flair.",
+        "weights": { "Cultural": 3 }
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "question": "If you had 10,000 hours to master one craft, what would it be?",
+    "subtitle": "Imagine your ultimate passion at elite proficiency.",
+    "options": [
+      {
+        "id": "q5_tech",
+        "text": "Inventing revolutionary software or hardware that changes everyday lives.",
+        "weights": { "Technical": 3 }
+      },
+      {
+        "id": "q5_dance",
+        "text": "Moving with breathtaking grace, power, and rhythm across world stages.",
+        "weights": { "Dance": 3 }
+      },
+      {
+        "id": "q5_sports",
+        "text": "Dominating athletic tournaments with elite physical fitness and clutch plays.",
+        "weights": { "Sports": 3 }
+      },
+      {
+        "id": "q5_lit",
+        "text": "Publishing bestselling books or commanding international debate podiums.",
+        "weights": { "Literary": 3 }
+      },
+      {
+        "id": "q5_music",
+        "text": "Mastering instruments, acoustic recording, and headlining concerts.",
+        "weights": { "Music": 3 }
+      },
+      {
+        "id": "q5_cult",
+        "text": "Directing monumental cultural productions, theatre, and arts movements.",
+        "weights": { "Cultural": 3 }
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "question": "Which of these quotes resonates with your inner drive?",
+    "subtitle": "Words to live by for your campus journey.",
+    "options": [
+      {
+        "id": "q6_tech",
+        "text": "\"Talk is cheap. Show me the code and solve real problems.\"",
+        "weights": { "Technical": 3 }
+      },
+      {
+        "id": "q6_music",
+        "text": "\"Where words fail, music speaks and connects human spirits.\"",
+        "weights": { "Music": 3, "Cultural": 1 }
+      },
+      {
+        "id": "q6_sports",
+        "text": "\"Discipline equals freedom. Hard work beats talent when talent doesn't work hard.\"",
+        "weights": { "Sports": 3 }
+      },
+      {
+        "id": "q6_lit",
+        "text": "\"The pen is mightier than the sword — ideas have the power to reshape the world.\"",
+        "weights": { "Literary": 3 }
+      },
+      {
+        "id": "q6_dance",
+        "text": "\"To dance is to be out of yourself. Larger, more beautiful, more powerful.\"",
+        "weights": { "Dance": 3 }
+      },
+      {
+        "id": "q6_cult",
+        "text": "\"Art and heritage are the heartbeat of civilization; they bring people together.\"",
+        "weights": { "Cultural": 3 }
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "question": "What legacy do you want to create before you graduate?",
+    "subtitle": "The lasting impression you want to make on college history.",
+    "options": [
+      {
+        "id": "q7_tech",
+        "text": "Launching innovative apps, open-source projects, and mentoring junior coders.",
+        "weights": { "Technical": 3 }
+      },
+      {
+        "id": "q7_sports",
+        "text": "Bringing home championship trophies and building a relentless team spirit.",
+        "weights": { "Sports": 3 }
+      },
+      {
+        "id": "q7_music",
+        "text": "Creating legendary campus festival tracks and memorable live concerts.",
+        "weights": { "Music": 3, "Cultural": 1 }
+      },
+      {
+        "id": "q7_dance",
+        "text": "Putting together unforgettable crew choreography that earns standing ovations.",
+        "weights": { "Dance": 3 }
+      },
+      {
+        "id": "q7_lit",
+        "text": "Leading editorial magazines, winning oratory trophies, and elevating campus discourse.",
+        "weights": { "Literary": 3 }
+      },
+      {
+        "id": "q7_cult",
+        "text": "Elevating campus festivals, dramatic theatre, and inclusive cultural celebrations.",
+        "weights": { "Cultural": 3 }
+      }
+    ]
+  }
+]
