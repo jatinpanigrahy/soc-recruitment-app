@@ -193,9 +193,9 @@ const getMyApplications = async (req, res) => {
   try {
     const studentId = req.user._id || req.user.id;
 
-    // Fetch user applications populated with society branding details
+    // Fetch user applications populated with society branding details and deadline
     const applications = await Application.find({ student: studentId })
-      .populate("society", "name logoUrl")
+      .populate("society", "name logoUrl deadline")
       .sort({ createdAt: -1 });
 
     return res.status(200).json({
