@@ -15,6 +15,9 @@ const connectDB = require("./config/db");
 const authRoutes = require("./routes/authRoutes");
 const societyRoutes = require("./routes/societyRoutes");
 const applicationRoutes = require("./routes/applicationRoutes");
+const adminRoutes = require("./routes/adminRoutes");
+const superAdminRoutes = require("./routes/superAdminRoutes");
+const notificationRoutes = require("./routes/notificationRoutes");
 const errorHandler = require("./middleware/errorMiddleware");
 const User = require("./models/User");
 const Society = require("./models/Society");
@@ -44,6 +47,9 @@ app.use(mongoSanitize());
 app.use("/api/auth", authRoutes);
 app.use("/api/societies", societyRoutes);
 app.use("/api/applications", applicationRoutes);
+app.use("/api/admin", adminRoutes);
+app.use("/api/super-admin", superAdminRoutes);
+app.use("/api/notifications", notificationRoutes);
 
 
 // Health check endpoint for uptime and deployment monitoring

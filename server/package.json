@@ -21,7 +21,9 @@
     "joi": "^18.2.9",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.9.5",
-    "resend": "^6.28.1"
+    "multer": "^2.4.0",
+    "resend": "^6.28.1",
+    "streamifier": "^0.1.1"
   },
   "devDependencies": {
     "jest": "^29.7.0",
