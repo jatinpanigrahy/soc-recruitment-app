@@ -50,4 +50,5 @@ Thumbs.db
 .agents/
 docs/
 AGENTS.md
-.github/
+.github/*
+!.github/workflows/
